@@ -1,0 +1,14 @@
+<div class="{{ 'text-center' if data.widget.position == 'center' }} {{ 'text-right' if data.widget.position == 'right' }}">
+	{{ apos.singleton(data.widget, 'title', 'apostrophe-rich-text',
+		{
+			toolbar: [ 'Styles' ],
+			styles: [
+				{ name: 'Header 1', element: 'h1', attributes:{'class':'font-extra-bold'} },
+				{ name: 'Header 2', element: 'h2' },
+				{ name: 'Header 3', element: 'h3' }
+			]
+
+		})
+	}}
+</div>
+<hr class="dd-underline {{ 'text-center' if data.widget.position == 'center' }} {{ 'text-left' if data.widget.position == 'left' }} {{ 'text-right' if data.widget.position == 'right' }}">

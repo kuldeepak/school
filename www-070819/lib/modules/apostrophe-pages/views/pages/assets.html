@@ -1,0 +1,182 @@
+{# This is an example home page template. It inherits and extends a layout template that lives in the top-level views/ folder
+for convenience #} {% extends "layout.html" %} {% block main %}
+
+
+<div class="page-container dd-page-assets">
+
+	<div class="full-bg-img lc-pad-tb-120 dd-font-white dd-bg-dark-grey" style="background-image:url('/images/banner-assets.jpg')">
+
+		<div class="container">
+
+			<h1 class="font-extra-bold lc-text-uppercase">Welcome!</h1>
+			<hr class="dd-underline text-left">
+
+			<!-- <p class="lc-margin-top-30">{{ data.user | dump }}</p> -->
+			<p class="lc-margin-top-30 lc-text-capitalise">{{ data.user.title | string }} ({{ data.user.email | string }})</p>
+
+		</div>
+
+	</div>
+	<div class="dd-bg-lightest-grey lc-pad-tb-15">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2 text-center">
+					<!-- TODO: add alarm icon -->
+					<p class="lc-margin-0"> <i class="fas fa-bell"></i> By accessing these files you agree to the following <span class="dd-font-orange"><a href="/terms-and-conditions">Terms and Conditions</a></span> and <span class="dd-font-orange"><a href="https://www.iubenda.com/privacy-policy/71549985" target="_blank">Privacy Policy.</a></span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container lc-margin-top-60 lc-position-relative">
+
+		<h3 class="lc-text-uppercase">Your resources</h3>
+		<hr class="dd-underline text-left lc-margin-bot-60">
+
+		{% if data.user._permissions.schedules %}
+		{% endif %}
+	</div>
+
+	<div id="accordion" class="panel-group lc-margin-bot-120">
+		<hr>
+		<div class="container">
+
+			<div class="panel">
+
+				<div class="panel-heading">
+					<a class="dd-font-black" data-toggle="collapse" data-parent="#accordion" href="#collapseSchemes">
+
+						<img style="max-height:75px;" src="/images/icons/icon-resources-doc.png" alt="">
+
+						<h3 class="lc-margin-bot-0 lc-margin-top-0 lc-text-uppercase lc-margin-left-30">Schemes of work</h3>
+
+						<h3>
+							<span>
+								<i class="fas fa-plus"></i>
+								<i class="fas fa-minus"></i>
+							</span>
+						</h3>
+					</a>
+				</div>
+
+				<div id="collapseSchemes" class="panel-collapse collapse">
+					<div class="panel-body">
+
+						<ul class="lc-no-style">
+
+							{% for document in data.documents %}
+							<li class="dd-custom-bullet dd-bullet-img-doc">
+
+								<a class="dd-font-black" style="word-break:break-all;" target="_blank" href="{{ apos.prefix }}/private/uploads/attachments/{{ document.attachment._id }}-{{ document.attachment.name }}.{{ document.attachment.extension }}">
+									<h3>{{ document.title }}.{{ document.attachment.extension }}</h3>
+								</a>
+							</li>
+							{% else %}
+							<li>There are no files available</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<hr>
+		<div class="container">
+
+			<div class="panel">
+
+				<div class="panel-heading">
+					<a class="dd-font-black" data-toggle="collapse" data-parent="#accordion" href="#collapseVideos">
+
+						<img style="max-height:75px;" src="/images/icons/icon-resources-video.png" alt="">
+
+						<h3 class="lc-margin-bot-0 lc-margin-top-0 lc-text-uppercase lc-margin-left-30">Video files</h3>
+
+						<h3>
+							<span>
+								<i class="fas fa-plus"></i>
+								<i class="fas fa-minus"></i>
+							</span>
+						</h3>
+					</a>
+				</div>
+
+				<div id="collapseVideos" class="panel-collapse collapse">
+					<div class="panel-body">
+
+						<ul class="lc-horizontal-list">
+							{% for video in data.videos %}
+							<!-- <a target="_blank" href="{{ video['vimeo-link'].url }}">{{ video.title }}</a> -->
+
+							<!-- <iframe src="{{ video['vimeo-link'].url }}" width="320" height="240" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
+							<li>
+								<button class="btn video-button video-thumbnail" data-channel="vimeo" data-video-id="{{ video.vimeoID }}">
+									<img src="{{ video['vimeo-link'].thumbnail }}" alt="">
+									<p>{{ video['vimeo-link'].title }}</p>
+								</button>
+							</li>
+
+							{% else %}
+								<p>There are no videos available</p>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<hr>
+		<div class="container">
+
+			<div class="panel">
+
+				<div class="panel-heading">
+					<a class="dd-font-black" data-toggle="collapse" data-parent="#accordion" href="#collapseMusic">
+
+						<img style="max-height:75px;" src="/images/icons/icon-resources-music.png" alt="">
+
+						<h3 class="lc-margin-bot-0 lc-margin-top-0 lc-text-uppercase lc-margin-left-30">Music files</h3>
+
+						<h3>
+							<span>
+								<i class="fas fa-plus"></i>
+								<i class="fas fa-minus"></i>
+							</span>
+						</h3>
+					</a>
+				</div>
+
+				<div id="collapseMusic" class="panel-collapse collapse">
+					<div class="panel-body">
+
+						<ul class="lc-no-style">
+
+							{% for audio in data.audios %}
+							<li class="dd-custom-bullet dd-bullet-img-music">
+								<a class="dd-font-black" style="word-break:break-all;" target="_blank" href="{{ apos.prefix }}/private/uploads/attachments/{{ audio.attachment._id }}-{{ audio.attachment.name }}.{{ audio.attachment.extension }}">
+									<h3>{{ audio.title }}.{{ audio.attachment.extension }}</h3>
+								</a>
+							</li>
+
+							{% else %}
+							<li>There are no audio tracks available</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- only show for logged in users -->
+		{% if data.user %}
+		<div class="help-btn">
+			<a href="{{ apos.prefix }}/contact">
+				<h4> <span>Need help?</span> <i class="far fa-comments fa-2x"></i></h4>
+			</a>
+		</div>
+		{% endif %}
+	</div>
+</div>
+
+{% endblock %}

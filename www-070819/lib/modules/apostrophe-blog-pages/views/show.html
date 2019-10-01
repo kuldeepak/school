@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% import 'apostrophe-templates:areas.html' as areas %}
+
+{% block title %}
+DDMIX for Schools | {{ data.piece.title }}
+{% endblock %}
+
+{% block main %}
+	<div class="page-container">
+
+		<!-- <img src=/uploads/attachments/{{piece.coverImage._id}}-{{piece.coverImage.name}}.full.{{piece.coverImage.extension}}></img> -->
+
+		<div class="container lc-margin-top-120" data-desktop-class="lc-margin-top-120" data-mobile-class="lc-margin-top-60">
+
+			<h1 class="font-extra-bold">{{ data.piece.title }}</h1>
+			<hr class="dd-underline text-left">
+			<!-- <h5 class="apos-event-date">{{ data.piece.start | date('MMMM Do') }} at {{ data.piece.start | date('h:mma') }}</h5> -->
+			<h5 class="dd-font-light-grey">{{ data.piece.publishedAt | date('MMMM Do, YYYY') }}</h5>
+		</div>
+
+		<div class="blog-header lc-full-bg-img lc-margin-top-60" style="background-image:url('/uploads/attachments/{{data.piece.coverImage._id}}-{{data.piece.coverImage.name}}.full.{{data.piece.coverImage.extension}}')"></div>
+
+		<div class="container dd-bg-white lc-pad-60" data-desktop-class="lc-pad-60" data-mobile-class="lc-pad-30">
+
+			{{ areas.copyAndMediaArea(data.page, 'content') }}
+
+
+			<!-- only show for logged in users -->
+			{% if data.user %}
+			<div class="help-btn">
+				<a href="{{ apos.prefix }}/contact">
+					<h4> <span>Need help?</span> <i class="far fa-comments fa-2x"></i></h4>
+				</a>
+			</div>
+			{% endif %}
+		</div>
+</div>
+{% endblock %}

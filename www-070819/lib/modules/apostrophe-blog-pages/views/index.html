@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+	{%- macro here(changes)-%}
+		{{ data.page._url | build({ year: data.query.year }, changes) }}
+	{%- endmacro -%}
+
+	<div class="page-container lc-margin-bot-60">
+
+		<!-- TODO: insert hero widget -->
+		<!-- {{ apos.singleton(data.page, 'hero', 'banner', {}) }} -->
+		<div class="dd-banner">
+
+		    <div class="lc-full-bg-img lc-pad-tb-60" style="background-image:url('/images/news-banner.jpg')">
+
+				<div class="container dd-font-white">
+
+					<h1 class="font-extra-bold lc-text-uppercase">News</h1>
+					<hr class="dd-underline text-left">
+
+					<div class="lc-margin-top-30">
+						{{ apos.singleton(data.page, 'intro', 'apostrophe-rich-text',
+							{
+								toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList' ],
+								styles: [ { name: 'Paragraph', element:'p' } ]
+							})
+						}}
+					</div>
+		    	</div>
+
+			</div>
+
+		</div>
+
+		<div class="container lc-margin-top-60">
+
+			{#<ul class="lc-horizontal-list text-center lc-width-100">
+				<li>
+					<a href="{{ here({ year: null }) }}" class="apos-blog-filters-link">All years</a>
+				</li>
+
+				{% for year in data.piecesFilters.year %}
+					<li>
+						<a href="{{ here({ year: year.value }) }}">{{ year.label }}</a>
+					</li>
+				{% endfor %}
+			</ul>#}
+
+			<div class="row lc-margin-top-60">
+
+				{% for piece in data.pieces %}
+					<!-- <div class="apos-blog-post-preview"> -->
+					<div class="col-sm-4">
+						<!-- <a href="{{ piece._url }}"></a> -->
+						<div class="lc-full-bg-img lc-no-min-height lc-pad-bot-per-60 dd-bg-lightest-grey" style="background-image: url('/uploads/attachments/{{piece.coverImage._id}}-{{piece.coverImage.name}}.full.{{piece.coverImage.extension}}')"></div>
+						<!-- <img style="width:100%;" src=/uploads/attachments/{{piece.coverImage._id}}-{{piece.coverImage.name}}.full.{{piece.coverImage.extension}}></img> -->
+
+
+						<h4 class="font-bold lc-margin-top-30">{{ piece.title }}</h4>
+						<h5>{{ piece.publishedAt | date('MMMM Do, YYYY') }}</h5>
+						<!-- <p class="apos-blog-post-body"> -->
+						<hr class="dd-underline">
+						<p>{{ piece.shortDescription }} <span class="dd-font-orange"><a href="{{ piece._url }}">Read more</a></span></p>
+					</div>
+				{% endfor %}
+			</div>
+
+			{% import 'apostrophe-pager:macros.html' as pager with context %}
+			{{ pager.render({ page: data.currentPage, total: data.totalPages }, data.url) }}
+
+			<!-- only show for logged in users -->
+			{% if data.user %}
+			<div class="help-btn">
+				<a href="{{ apos.prefix }}/contact">
+					<h4> <span>Need help?</span> <i class="far fa-comments fa-2x"></i></h4>
+				</a>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+
+
+
+
+{% endblock %}

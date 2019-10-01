@@ -1,0 +1,96 @@
+{# This is an example home page template. It inherits and extends a layout template that lives in the top-level views/ folder
+for convenience #}
+
+{% extends "layout.html" %}
+
+{% block main %}
+
+
+<div class="page-container dd-page-packages">
+
+	<div class="container lc-margin-top-120" data-mobile-class="lc-margin-top-60">
+		<h1 class="font-extra-bold lc-text-uppercase">School Packages</h1>
+		<hr class="dd-underline text-left">
+
+		<div class="lc-margin-top-30">
+			{{ apos.singleton(data.page, 'intro', 'apostrophe-rich-text',
+				{
+					toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList' ],
+					styles: [ { name: 'Paragraph', element:'p' } ]
+				})
+			}}
+		</div>
+	</div>
+
+	<div class="big-banner lc-position-relative lc-margin-top-90 lc-content-behind" data-desktop-class="lc-margin-lr-60">
+		{{ apos.singleton(data.page, 'jumbotron', 'banner') }}
+	</div>
+
+
+
+	<div class="container lc-position-relative dd-bg-white lc-pad-bot-120 lc-content-above lc-pad-top-1" data-desktop-class="lc-margin-top--150 lc-pad-lr-60">
+
+		{% for package in data.schoolPackages %}
+		<div class="row {{ 'lc-margin-top-90' if loop.index0 != 0 }} {{ 'lc-margin-top-60' if loop.index0 == 0 }}">
+			<div class="col-sm-4 text-center dd-font-white">
+
+
+				<div class="package-cover-img lc-full-bg-img lc-pad-tb-120 dd-bg-lightest-grey" style="background-image: url('{{ apos.prefix }}/uploads/attachments/{{package.coverImg._id}}-{{ package.coverImg.name }}.{{ package.coverImg.extension }}')"></div>
+
+				<!-- <button class="apos-button apos-button--major dd-font-white lc-margin-top--30 lc-pad-tb-20">
+				</button> -->
+				<a class="lc-text-uppercase apos-button apos-button--major dd-font-white lc-margin-top--30 lc-pad-tb-20" href="{% if package.contactLinkUrl %} {{package.contactLinkUrl}} {% else %}/contact?type=package&pckg={{ package.title }} {% endif %}">
+					{% if package.contactLinkValue %}
+					{{package.contactLinkValue}}
+					{% else %}
+					Book now
+					{% endif %}
+				</a>
+			</div>
+
+			<div class="col-sm-6 col-sm-offset-1" data-mobile-class="lc-margin-top-15">
+
+				<div class="row lc-align-middle">
+					<div class="col-xs-3 col-md-2">
+
+						{% if package.icon %}
+							<div class="lc-full-bg-img package-icon-img" style="background-image: url('{{ apos.prefix }}/uploads/attachments/{{package.icon._id}}-{{ package.icon.name }}.{{ package.icon.extension }}')"></div>
+						{% else %}
+							<div class="lc-full-bg-img package-icon-img" style="background-image: url('http://via.placeholder.com/150x150')"></div>
+						{% endif %}
+					</div>
+
+					<div class="col-xs-9 col-md-10">
+
+						<h2 class="lc-margin-top-0">{{package.title}}:
+							{% if package.pricePrefix %}
+								<span> {{package.pricePrefix}}</span>
+							{% endif %}
+							{% if package.price %}
+								<span> £{{package.price}}</span>
+							{% endif %}
+						</h2>
+
+
+						{% for feature in package.features %}
+							<h4 class="lc-margin-0">{{ feature.feature }}</h4>
+						{% endfor %}
+					</div>
+				</div>
+
+				<div class="lc-margin-top-30">
+
+					{{ apos.singleton(package, 'description', 'apostrophe-rich-text', {
+						toolbar: [ ]
+						})
+					}}
+
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+</div>
+
+{% endblock %}

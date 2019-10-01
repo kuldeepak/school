@@ -1,0 +1,32 @@
+{#
+  Use this template to build out your 404 error pages. Like page templates,
+  it inherits a global layout.
+#}
+
+{% extends "layout.html" %}
+
+{% block title %}404 - Page not found{% endblock %}
+
+{% block main %}
+
+
+  <div class="page-container">
+	  <div class="container lc-margin-bot-60 lc-margin-top-120" data-desktop-class="lc-margin-top-120" data-mobile-class="lc-margin-top-30">
+
+		<div class="row lc-align-middle">
+			<div class="col-sm-4">
+				<h1 class="font-extra-bold">Oops..</h1>
+				<hr class="dd-underline text-left">
+				<h3>Page not found!</h3>
+
+				<p>The page you are looking for is not available.</p>
+				<p>But that's ok you can dance with Carlton or head back to the home page</p>
+			</div>
+
+			<div class="col-sm-8">
+				<img style="width:100%;" src="https://78.media.tumblr.com/fec198149ed65676b566d1863134efb6/tumblr_nkgkcywOtB1une17mo1_500.gif" alt="">
+			</div>
+		</div>
+	  </div>
+  </div>
+{% endblock %}

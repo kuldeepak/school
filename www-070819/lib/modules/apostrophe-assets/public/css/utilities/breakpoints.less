@@ -1,0 +1,22 @@
+// media query variables
+@narrow: ~"(max-width: 790px)";
+
+.hide-desktop {
+  display: none;
+}
+.invisible-desktop {
+  opacity: 0;
+}
+
+body {
+  @media screen and @narrow {
+    .hide-desktop {
+      display: block;
+    }
+  }
+  @media screen and @narrow {
+    .hide-mobile {
+      display: none;
+    }
+  }
+}

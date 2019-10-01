@@ -1,0 +1,43 @@
+<div class="panel">
+
+  <div class="panel-heading">
+	<h2 class="lc-margin-0 dd-font-black">
+
+		<a class="dd-font-black" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ data.widget._id }}">
+			<table style="width:100%;">
+				<td class="">
+					{{ data.widget.question }}
+				</td>
+				<td style="width:50px; text-align:center;">
+					<i class="fas fa-plus"></i>
+	  			  	<i class="fas fa-minus"></i>
+				</td>
+			</table>
+		</a>
+
+	  <!-- <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ data.widget._id }}">
+
+		  {{ data.widget.question }}
+
+		  <span>
+			  <i class="fas fa-plus"></i>
+			  <i class="fas fa-minus"></i>
+		  </span>
+	  </a> -->
+
+
+  	</h2>
+  </div>
+
+  <div id="collapse{{ data.widget._id }}" class="panel-collapse collapse">
+	<div class="panel-body">
+		{{ apos.singleton(data.widget, 'answer',
+
+			'apostrophe-rich-text', {
+				toolbar: [ 'Styles', 'Bold', 'Italic', 'Link', 'Anchor', 'Unlink', 'BulletedList' ],
+				styles: [ { name: 'Subtitle', element: 'h3' }, { name: 'Body', element: 'p' } ]
+			})
+		}}
+	</div>
+  </div>
+</div>

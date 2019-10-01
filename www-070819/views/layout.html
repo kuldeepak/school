@@ -1,0 +1,215 @@
+{# Automatically extends the right outer layout and also handles AJAX siutations #}
+{% extends data.outerLayout %}
+
+{% block title %}
+  {# Create a useful, SEO-friendly title tag based on what we have #}
+
+  DDMIX for Schools |
+  {% if data.piece %}
+    {{ data.piece.title }}
+  {% elseif data.page %}
+    {{ data.page.title }}
+  {% else %}
+    {{ apos.log('Looks like you forgot to override the title block in a template that does not have access to an Apostrophe page or piece.') }}
+  {% endif %}
+{% endblock %}
+
+{% block extraHead %}
+  {#
+    This block outputs its contents in the HTML document's <head>.
+    It is a good place to put extra <script> <link> and <meta> tags.
+  #}
+  	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,800" rel="stylesheet">
+  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
+	<link rel="icon" href="images/favicon.ico">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<meta name="description" content="DDMIX for schools is an inspiring dance fitness program that gets kids moving">
+    <meta data="keywords" content="ppa cover, pe coaching, physical education coaching, diverse dance mix, ddmix for schools, ddmix, scheme of work, key stage 1 and 2, primary dance schemes of work, primary physical education, dance curriculum, inclusive dance, inclusive pe, inclusive physical education, dance cpd, primary dance training, primary pe, primary physical education, cpd, dance, dance training for teachers, dance fitness">
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120233262-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-120233262-1');
+	</script>
+
+	<!-- RayGun -->
+	<script type="text/javascript">
+  !function(a,b,c,d,e,f,g,h){a.RaygunObject=e,a[e]=a[e]||function(){
+  (a[e].o=a[e].o||[]).push(arguments)},f=b.createElement(c),g=b.getElementsByTagName(c)[0],
+  f.async=1,f.src=d,g.parentNode.insertBefore(f,g),h=a.onerror,a.onerror=function(b,c,d,f,g){
+  h&&h(b,c,d,f,g),g||(g=new Error(b)),a[e].q=a[e].q||[],a[e].q.push({
+  e:g})}}(window,document,"script","//cdn.raygun.io/raygun4js/raygun.min.js","rg4js");
+	</script>
+
+	<script type="text/javascript">
+  rg4js('apiKey', 'VdeRJ4zTEgYR4x00gGEWWw==');
+  rg4js('enableCrashReporting', true);
+  rg4js('enablePulse', true);
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+	<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+	<script>
+	window.addEventListener("load", function(){
+	window.cookieconsent.initialise({
+	  "palette": {
+		"popup": {
+		  "background": "#000"
+		},
+		"button": {
+		  "background": "#fd6a00",
+		  "text":"#000000"
+		}
+	  }
+	})});
+	</script>
+
+
+{% endblock %}
+
+{% block beforeMain %}
+  {#
+    We recommend you use the beforeMain block for global page components
+    like headers or navigation.
+  #}
+
+  <!-- <header class="{{ data.page.title | lower }}" data-mobile-class="mobile"> -->
+  <header class="{{ data.page.title | lower }}">
+    <table class="dd-animate-fade-in">
+		<!-- <td class="dd-nav-logo" data-desktop-class="lc-width-per-15" data-mobile-class="lc-width-per-85"> -->
+		<td class="dd-nav-logo">
+			<a class="navbar-brand" href="{{ data.home._url }}">
+				<!-- <img src="/images/logo.png"> -->
+			</a>
+		</td>
+
+
+		<!-- <td class="dd-nav-links" data-mobile-class="text-right"> -->
+		<td class="dd-nav-links">
+
+			<!-- fully css mobile nav menu -->
+			<input type="checkbox" name="" id="open">
+			<!-- <label for="open" class="menu-btn lc-margin-right-15" data-desktop-class="lc-display-none"> -->
+			<label for="open" class="menu-btn lc-margin-right-15">
+				<span></span>
+				<span></span>
+				<span></span>
+			</label>
+
+			<nav>
+				<!-- <ul class="text-center font-white" data-desktop-class="lc-horizontal-list"> -->
+				<ul class="text-center font-white">
+
+					<li ><a href="{{data.home._url}}" class="dd-font-white {% if data.page.title == data.home.title %}active{% endif %}">Home</a></li>
+
+			  		  {% for tab in data.home._children %}
+			  			{% if tab._children.length %}
+			  			  <li class="nav-item dropdown">
+			  				<a href="#" class="dd-font-white dropdown-toggle {% if (data.page.title == tab.title) or ( (data.page.slug) and (tab.slug in data.page.slug)) %}active{% endif %}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ tab.title }} <span class="caret"></span></a>
+			  				<ul class="dropdown-menu">
+
+
+			  				  {% for child in tab._children %}
+								  <!-- <li>
+									  <p style="color:white;">{% if tab.slug in child.slug %}IT WORKS{% else %} {{tab.slug}} || {{child.slug}} {% endif %}</p>
+								  </li> -->
+			  					<li><a href="{{ child._url }}" class="dd-font-white {% if data.page.title == child.title %}active{% endif %}">{{ child.title }}</a></li>
+			  				  {% endfor %}
+			  				</ul>
+			  			  </li>
+			  			{% endif %}
+
+			  			{% if not tab._children.length %}
+			  			  <li class="nav-item dd-font-white"><a href="{{ tab._url }}" class="dd-font-white {% if data.page.title == tab.title %}active{% endif %}">{{ tab.title }}</a></li>
+			  			{% endif %}
+			  		  {% endfor %}
+
+					<!-- <li class="access-link dd-font-white" data-desktop-class="lc-display-none"> -->
+					<li class="access-link dd-font-white">
+						{% if not data.user %}
+		  				<a class="dd-font-white login-link" href="{{ data.home._url }}login">Login</a>
+						{% endif %}
+						{% if data.user %}
+						<a class="dd-font-white login-link" href="{{ data.home._url }}logout">Logout</a>
+						{% endif %}
+					</li>
+				</ul>
+
+
+
+			</nav>
+		</td>
+
+		<!-- <td class="dd-nav-right text-right lc-pad-right-15 dd-font-white" style="width:15%" data-mobile-class="lc-display-none"> -->
+		<td class="dd-nav-right text-right lc-pad-right-15 dd-font-white">
+			{% if not data.user %}
+			<a class="login-link dd-font-black" href="{{ data.home._url }}login">Login</a>
+			{% endif %}
+			{% if data.user %}
+			<a class="login-link dd-font-black" href="{{ data.home._url }}logout">Logout</a>
+			{% endif %}
+		</td>
+	</table>
+  </header>
+
+{% endblock %}
+
+{% block main %}
+  {#
+    Usually, your page templates in the apostrophe-pages module will override
+    this block. It is safe to assume this is where your page-specific content
+    should go.
+  #}
+{% endblock %}
+
+{% block afterMain %}
+  {#
+    This would be a great place to put a global footer.
+  #}
+
+	<footer class="lc-pad-top-60 lc-pad-bot-15 dd-bg-dark-grey ">
+		<div class="container">
+			<div class="row text-center">
+				<div class="col-sm-4 col-sm-offset-4">
+					<img src="/images/logo.png" style="width:180px;" alt="">
+				</div>
+				<div class="col-sm-12">
+					<p class="lc-margin-top-15">© 2018 DDMIX for Schools</p>
+					<p class="lc-margin-top-15">A company limited by guarantee registered in England under no. 02681453</p>
+				</div>
+				<div class="col-sm-12 lc-margin-top-15">
+					<ul class="lc-horizontal-list">
+						<li><a class="font-bold dd-font-white dd-text-underline" href="{{apos.prefix}}/terms-and-conditions">Terms & conditions</a></li>
+						<li><a class="font-bold dd-font-white dd-text-underline" href="https://www.iubenda.com/privacy-policy/71549985" target="_blank">Privacy policy</a></li>
+						<!-- <li><a class="font-bold" href="{{apos.prefix}}/cookies">Cookies</a></li> -->
+					</ul>
+				</div>
+			</div>
+			<div class="row text-center lc-margin-top-30">
+				<div class="col-sm-12">
+					<ul class="lc-horizontal-list">
+						<li><a class="dd-font-white lc-margin-lr-15" href="https://twitter.com/diversedancemix" target="_blank"><i class="fab fa-twitter fa-lg font-white fa-2x"></i></a></li>
+						<li><a class="dd-font-white lc-margin-lr-15" href="https://www.facebook.com/diversedancemix/" target="_blank"><i class="fab fa-facebook-f fa-lg font-white fa-2x"></i></a></li>
+						<li><a class="dd-font-white lc-margin-lr-15" href="https://www.instagram.com/diversedancemix" target="_blank"><i class="fab fa-instagram fa-lg font-white fa-2x"></i></a></li>
+					</ul>
+				</div>
+				<div class="col-sm-12">
+
+					<p class="text-center font-small lc-margin-top-45">
+						<a class="dd-font-white dd-text-underline" href="http://letscreateltd.com/" target="_blank">Designed &amp; Developed by Let's Create</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+
+{% endblock %}

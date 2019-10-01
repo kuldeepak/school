@@ -1,0 +1,23 @@
+{% import 'apostrophe-templates:areas.html' as areas %}
+
+<div class="row" {% if (i != 0) and (data.widget.position == 'middle') %} data-desktop-class="lc-align-middle" {% endif %}>
+
+	{% for i in range(0, data.widget.length) -%}
+
+		<!-- NOTE: currently only 2 column config allows "unevenColumns" to be set -->
+		{% if data.widget.unevenColumns %}
+			<div class="{{ 'col-sm-4' if i == 0 }} {{ 'col-sm-8' if i == 1 }}" {% if i != 0 %} data-mobile-class="lc-margin-top-30" {% endif %}>
+
+				{{ areas.defaultArea(data.widget, 'col'+i, false) }}
+
+			</div>
+		{% else %}
+			<div class="{{ 'col-sm-6' if data.widget.length == 2 }} {{ 'col-sm-4' if data.widget.length == 3 }} {{ 'col-sm-3' if data.widget.length == 4 }}" {% if i != 0 %} data-mobile-class="lc-margin-top-30" {% endif %}>
+
+				{{ areas.defaultArea(data.widget, 'col'+i, false) }}
+
+			</div>
+		{% endif %}
+
+	{%- endfor %}
+</div>

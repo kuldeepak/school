@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% import 'apostrophe-templates:areas.html' as areas %}
+
+{% block title %}{{ data.piece.title }}
+{% endblock %}
+
+
+{% block main %}
+	<div class="page-container">
+
+		<div class="lc-pad-top-120" data-mobile-class="lc-pad-top-60">
+
+			{{ apos.area(data.page, 'content', {
+				widgets: {
+					'banner': {},
+					'dd-container': {},
+					'dd-spacer': {}
+				}
+			}) }}
+		</div>
+		{% if data.user %}
+		<div class="help-btn">
+			<a href="{{ apos.prefix }}/contact">
+				<h4> <span>Need help?</span> <i class="far fa-comments fa-2x"></i></h4>
+			</a>
+		</div>
+		{% endif %}
+
+
+	</div>
+{% endblock %}

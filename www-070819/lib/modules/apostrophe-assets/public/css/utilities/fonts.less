@@ -1,0 +1,110 @@
+
+// include dd fonts from designs
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	font-family: 'Open Sans', sans-serif;
+	letter-spacing: 1.04px;
+}
+
+a:not(.dd-font-black,.cc-dismiss){
+	&:not(.dd-font-white,.apos-ui){
+
+		&:hover,
+		&:active,
+		&:visited{
+			color:@dd-orange;
+		}
+		color:@dd-orange;
+	}
+}
+p a{
+	&:hover,
+	&:active,
+	&:visited{
+		color:@dd-orange;
+	}
+	color:@dd-orange;
+}
+
+button,footer,.help-btn,div.apos-ui{
+	a{
+		&:hover,
+		&:active,
+		&:visited{
+			color:inherit !important;
+
+			&:not(.dd-text-underline){
+				text-decoration: none;
+			}
+		}
+		color:inherit !important;
+	}
+}
+a.apos-button,a[data-toggle="collapse"],.dd-font-black{
+	&:hover,
+	&:active,
+	&:visited{
+		color:inherit;
+
+		&:not(.dd-text-underline){
+			text-decoration: none;
+		}
+	}
+	color:inherit;
+}
+
+p{
+	line-height: 2.2em;
+}
+
+h4,h3,h2{
+	line-height: 1.6em;
+	margin:0;
+}
+
+h1{
+	font-size: 55px;
+}
+
+.font-small{
+	font-size: 1rem;
+}
+.font-bold{
+	font-weight:bold;
+}
+.font-extra-bold{
+	font-weight:900;
+}
+
+.font-italic{
+	font-style: italic;
+}
+
+.lc-text-capitalise{
+	text-transform: capitalize;
+}
+.lc-text-uppercase{
+	text-transform: uppercase;
+}
+.lc-text-lowercase{
+	text-transform: lowercase;
+}
+
+@media only screen and (max-width : 480px) {
+	// mobile nav
+	h1{
+		font-size: 50px;
+	}
+}

@@ -1,0 +1,66 @@
+// hides titles on image widgets
+.apos-image-widget-image-title{
+	display:none;
+}
+
+.apos-modal-blackout{
+	z-index:2000;
+}
+.apos-ui.apos-modal{
+	z-index:2010;
+
+	::-webkit-scrollbar-thumb{
+		background-color: @dd-orange;
+	}
+
+	.apos-modal-breadcrumb .apos-modal-breadcrumb-item{
+		    border-bottom: 1px dashed @dd-orange;
+	}
+}
+.apos-required label::after{
+	color: @dd-orange;
+}
+.apos-ui{
+
+	color:@dd-dark-grey;
+
+	.apos-admin-bar{
+		z-index: 2000;
+		top:85px;
+	}
+
+	// primary colour overrides
+	.apos-admin-bar,
+	.apos-button:after,
+	.apos-button--global,
+	.apos-button--major,
+	.apos-admin-bar-item .apos-active{
+		background-color: @dd-orange;
+	}
+
+	.apos-button{
+		border-radius: 0;
+	}
+}
+
+.apos-button--major{
+	padding: 15px 40px;
+
+	color: @dd-white !important;
+}
+
+.apos-rich-text{
+	a{
+		&:hover,
+		&:active,
+		&:visited{
+			color:@dd-orange;
+		}
+		color:@dd-orange;
+	}
+}
+
+// override inline height being added on page load
+.apos-slideshow >div[data-slideshow-items]{
+	height:auto !important;
+}

@@ -1,0 +1,44 @@
+{# In lib/modules/suggestions/views/emailInserted.html #}
+<h4>Contact Form</h4>
+<p>name: {{ data.name }}</p>
+<p>email: {{ data.email }}</p>
+<p>phone: {{ data.phone }}</p>
+{% if data.message %}
+    <p>message: {{ data.message }}</p>
+{% endif %}
+{% if data.packages %}
+    <p>packages: {{ data.packages }}</p>
+{% endif %}
+{% if data.schoolName %}
+    <p>schoolName: {{ data.schoolName }}</p>
+{% endif %}
+{% if data.headteacherName %}
+    <p>headteacherName: {{ data.headteacherName }}</p>
+{% endif %}
+{% if data.address %}
+    <p>address: {{ data.address }}</p>
+{% endif %}
+{% if data.postcode %}
+    <p>postcode: {{ data.postcode }}</p>
+{% endif %}
+{% if data.option1 %}
+    <p>option1: {{ data.option1 }}</p>
+{% endif %}
+{% if data.option2 %}
+    <p>option2: {{ data.option2 }}</p>
+{% endif %}
+{% if data.option3 %}
+    <p>option3: {{ data.option3 }}</p>
+{% endif %}
+{% if data.option4 %}
+    <p>option4: {{ data.option4 }}</p>
+{% endif %}
+{% if data.yearGroup %}
+    <p>yearGroup: {{ data.yearGroup }}</p>
+{% endif %}
+{% if data.numberOfStudents %}
+    <p>numberOfStudents: {{ data.numberOfStudents }}</p>
+{% endif %}
+{% if data.commentsOrRequests %}
+    <p>commentsOrRequests: {{ data.commentsOrRequests }}</p>
+{% endif %}

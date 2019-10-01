@@ -1,0 +1,321 @@
+
+footer{
+	color:#FFF;
+
+	p,li,a{
+		color:#FFF;
+	}
+}
+
+.dd-animate-fade-in{
+	// opacity: 0;
+	animation: fadein 0.7s;
+}
+@keyframes fadein {
+  from {
+	  opacity: 0;
+	  visibility: hidden;
+  }
+  to   {
+	  opacity: 1;
+	  visibility:visible;
+  }
+}
+
+header{
+
+	table{
+		width:100%;
+	}
+
+	width: 100%;
+	height: auto;
+	background: black;
+	background-color: @dd-dark-grey;
+	padding-top:15px;
+	padding-bottom:15px;
+
+	position: fixed;
+	z-index: 1000;
+
+	td.dd-nav-logo,
+	td.dd-nav-right{
+		width:15%;
+	}
+
+	.navbar-brand{
+		padding-top:0;
+		padding-bottom: 0;
+		padding: 0;
+		width: 100%;
+		pointer-events: all;
+		margin-left: 15px;
+
+		background-image: url('/images/logo.png');
+		background-position-x: left;
+		background-position-y: middle;
+		background-repeat: no-repeat;
+		background-size: contain;
+	}
+
+	nav li a, a{
+		color:#FFF;
+		text-transform: uppercase;
+
+		&:visited, &:hover, &:active, &:focus {
+			text-decoration: none;
+	      	color: #FFF;
+		  	background-color: transparent;
+	    }
+
+		&.active{
+			font-weight: bold;
+		}
+
+	}
+}
+
+label.menu-btn{
+	display: inline-block;
+	cursor: pointer;
+
+	span{
+		width: 35px;
+		height: 5px;
+		background-color: #fff;
+		margin: 6px 0;
+		transition: 0.4s;
+		display: block;
+	}
+}
+
+input[type="checkbox"]:checked + label.menu-btn{
+	span{
+		opacity: 0;
+	}
+	span:first-child{
+		opacity: 1;
+		-webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+    	transform: rotate(-45deg) translate(-9px, 6px) ;
+	}
+	span:last-child{
+		opacity: 1;
+		-webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+    	transform: rotate(45deg) translate(-8px, -8px) ;
+	}
+}
+
+#open{
+	display: none;
+}
+
+
+/*=====================================================
+=            Bootstrap 2.3.2 Media Queries            =
+=====================================================*/
+@media only screen and (max-width : 1200px) {
+
+}
+
+@media only screen and (max-width : 979px) {
+
+}
+
+// desktop only styles
+@media only screen and (min-width: 768px){
+
+	header{
+		pointer-events: none;
+
+		a.login-link{
+			border: 2px white solid;
+			padding: 5px 15px;
+		}
+
+		td.dd-nav-links{
+			.menu-btn{
+				display: none;
+			}
+
+			nav ul{
+				// horizontal list
+				list-style: none;
+				margin: 0;
+				padding: 0;
+
+				li{
+					display: inline-block;
+					margin: 0 15px;
+					&.access-link{
+						display: none;
+					}
+				}
+			}
+
+			nav ul.dropdown-menu{
+				background-color: @dd-dark-grey;
+				border:none;
+				top:35px;
+				border-radius: 0;
+				padding:10px 0;
+
+				li:not(:first-child){
+					margin-top: 10px;
+				}
+
+				li>a{
+					color:#FFF;
+					text-transform: uppercase;
+					padding:0;
+
+					&:visited, &:hover, &:active, &:focus {
+						text-decoration: none;
+						color: #FFF;
+						background-color: transparent;
+					}
+
+					&.active{
+						font-weight: bold;
+					}
+				}
+			}
+		}
+
+		nav ul li, a.login-link{
+			pointer-events: all;
+		}
+
+
+
+		&.home{
+			&:not(.scrolled){
+
+				// override the bg for home page
+				background-color: transparent;
+
+				nav ul.dropdown-menu{
+					background-color: #fff;
+					border:none;
+					top:35px;
+
+					li>a{
+						color:@dd-dark-grey;
+
+						&:visited, &:hover, &:active, &:focus {
+					      	color: @dd-dark-grey;
+					    }
+
+					}
+				}
+			}
+		}
+	}
+}
+
+/* Portrait tablet to landscape and desktop */
+@media only screen and (min-width: 768px) and (max-width: 979px) {
+	.box{
+		width: 49%;
+		margin-bottom: 5%;
+	}
+
+	ul li:nth-child(3) .box{
+		clear: both;
+	}
+
+	ul li:nth-child(2n) .box{
+		margin-right: 0;
+		clear: right;
+	}
+}
+
+// tablet
+@media only screen and (max-width : 767px) {
+	nav>a{
+		padding: 0 1em;
+		display: block;
+		border-bottom: solid 1px rgba(255,255,255,.1);
+	}
+
+	// open mobile 	menu
+	input[type="checkbox"]:checked + label + nav{
+		height: 100vh;
+	}
+
+
+	header{
+		background-color:@dd-dark-grey;
+
+		td.dd-nav-logo{
+			width:85%;
+		}
+		td.dd-nav-links{
+			text-align: right;
+
+			nav{
+				height: 0;
+				overflow: hidden;
+				-webkit-transition: all .3s ease;
+				position: absolute;
+				background-color: white;
+				// top: 65px;
+				top: @nav-height;
+				width: 100%;
+				left: 0;
+
+				ul{
+					margin: 0;
+					margin-top:60px;
+					list-style: none;
+					padding: 0;
+
+					li:not(:first-child){
+						margin-top:30px;
+					}
+				}
+
+				ul.dropdown-menu{
+					position: relative;
+					float: none;
+					text-align: center;
+					border: 0;
+					box-shadow: none;
+					background-color: #eee;
+					margin-top: 0;
+
+					// padding:0 0 15px;
+					padding: 15px 0;
+
+					li:not(:first-child){
+						margin-top:10px;
+					}
+				}
+
+			}
+			nav li a, a{
+				font-size: 20px;
+				color: @dd-dark-grey !important;
+				text-transform: uppercase;
+
+				&:visited, &:hover, &:active, &:focus {
+					font-size: 20px;
+					color: @dd-dark-grey !important;
+				}
+			}
+		}
+		td.dd-nav-right{
+			display: none;
+		}
+
+
+	}
+}
+
+@media only screen and (max-width : 480px) {
+	// mobile nav
+
+}
+
+@media only screen and (max-width : 320px) {
+
+}

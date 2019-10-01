@@ -1,0 +1,138 @@
+@apos-primary: @dd-orange;
+
+@import "./node_modules/bootstrap-less/bootstrap/index";
+
+@import "lc/_index.less";
+@import "utilities/_index.less";
+
+// @apos-delete: @apos-red;
+// @apos-secondary: @apos-blue;
+// @apos-base: @apos-green;
+
+@import "layout/_index.less";
+@import "templates/_index.less";
+@import "components/_index.less";
+
+img {
+  max-width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+hr.dd-underline {
+  width: 60px;
+  max-width: 60px;
+  border-top: 3px solid @dd-orange;
+  margin-left: 0;
+  margin-top:25px;
+
+
+  &.text-center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.border-white {
+  border: 1px solid white;
+}
+
+// hide files from admin bar.
+body
+  > div:nth-child(1)
+  > div
+  > div
+  > div:nth-child(7)
+  > div.apos-admin-bar-item-inner {
+  display: none;
+}
+
+// hide contact forms from admin bar.
+body
+  > div:nth-child(1)
+  > div
+  > div
+  > div:nth-child(11)
+  > div.apos-admin-bar-item-inner {
+  display: none;
+}
+
+// hide log out from admin bar.
+body
+  > div:nth-child(1)
+  > div
+  > div
+  > div:nth-child(13)
+  > div.apos-admin-bar-item-inner {
+  display: none;
+}
+
+// hide tags from admin bar.
+body
+  > div:nth-child(1)
+  > div
+  > div
+  > div:nth-child(2)
+  > div.apos-admin-bar-item-inner {
+  display: none;
+}
+
+// hide global from admin bar.
+body
+  > div:nth-child(1)
+  > div
+  > div
+  > div:nth-child(3)
+  > div.apos-admin-bar-item-inner {
+  display: none;
+}
+
+// hide profiles from admin bar.
+body
+  > div:nth-child(1)
+  > div
+  > div
+  > div:nth-child(9)
+  > div.apos-admin-bar-item-inner {
+  display: none;
+}
+
+// hiding the publish field in modal.
+.apos-field.apos-field-boolean.apos-field-published {
+  display: none;
+}
+
+// hiding the slug field in modal.
+.apos-field.apos-field-slug.apos-field-slug.apos-required {
+  display: none;
+}
+
+// hiding the tags field in modal.
+.apos-field.apos-field-tags.apos-field-tags {
+  display: none;
+}
+
+// hiding the login disabled field in modal.
+.apos-field.apos-field-boolean.apos-field-disabled {
+  display: none;
+}
+
+// hiding the password field in modal.
+.apos-field.apos-field-password.apos-field-password {
+  display: none;
+}
+
+.row-centered{
+	text-align: center;
+
+	.col-centered{
+		display:inline-block;
+		float:none;
+		/* reset the text-align */
+		text-align:left;
+		/* inline-block space fix */
+		margin-right:-4px;
+	}
+}

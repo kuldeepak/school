@@ -1,0 +1,25 @@
+{#
+  This file extends Apostrophe's outerLayoutBase template, which we don't recommend
+  overriding directly. Changes in this file, if any, are usually block overrides to
+  modify the outer chrome, outside the main content area of the page. Most of the
+  time you should just edit `layout.html` in the top level `views/` folder.
+#}
+
+{% extends "outerLayoutBase.html" %}
+  {% block apostropheMenu %}
+  {% if data.user._permissions.edit %}
+    {{ apos.adminBar.output() }}
+  {% endif %}
+{% endblock %}
+
+{% block apostropheContextMenu %}
+      {% if data.user._permissions.edit %}
+        <div class="apos-ui">
+          <div class="apos-context-menu-container">
+            {{ apos.pages.publishMenu({ publishMenu: data.publishMenu, page: data.page, piece: data.piece, bottom: true }) }}
+            {{ apos.pages.menu({ contextMenu: data.contextMenu, page: data.page, bottom: true })}}
+            {{ apos.pages.afterContextMenu() }}
+          </div>
+        </div>
+      {% endif %}
+{% endblock %}

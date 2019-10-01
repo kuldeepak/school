@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"ddmix-schools.aposAttachments"},{"v":2,"key":{"docIds":1},"name":"docIds_1","ns":"ddmix-schools.aposAttachments"},{"v":2,"key":{"trashDocIds":1},"name":"trashDocIds_1","ns":"ddmix-schools.aposAttachments"}],"uuid":"79f2cdbcd2fb4a8cb3647317d21db2b8"}

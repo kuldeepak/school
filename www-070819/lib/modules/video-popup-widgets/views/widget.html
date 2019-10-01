@@ -1,0 +1,11 @@
+<div class="video-button-container">
+	<button class="video-button" data-channel="vimeo" data-video-id="{{ data.widget.video_id }}">
+		<a href="#" class="round-button dd-font-white">
+			<i class="fa fa-play fa-2x play dd-font-white"></i>
+		</a>
+	</button>
+
+	{% if data.widget.caption %}
+		<p class="lc-margin-top-30 font-bold">{{ data.widget.caption }}</p>
+	{% endif %}
+</div>

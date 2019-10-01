@@ -1,0 +1,183 @@
+{# This is an example home page template. It inherits and extends a layout template that lives in the top-level views/ folder for convenience #}
+{% extends "layout.html" %}
+
+{% import 'apostrophe-templates:areas.html' as areas %}
+
+{% block main %}
+
+	<div class="page-container home-page">
+
+		<div class="big-banner">
+			{{ apos.area(data.page, 'jumbotron', { widgets: { 'banner': {} } }) }}
+		</div>
+
+		{{ apos.area(data.page, 'content', {
+			widgets: {
+				'banner': {},
+				'dd-container': {},
+				'dd-spacer': {}
+			}
+		}) }}
+
+		<div class="lc-full-bg-img lc-pad-tb-30" style="background-image: url('/images/school-package-bg.jpg')">
+
+			<div class="container">
+
+				<div class="row">
+
+					<div class="col-sm-8 col-sm-offset-2">
+						<!-- <h2>School Packages</h2>
+						<hr class="dd-underline text-center">
+						<p>We offer a variety of packages to suit every school. We can either train your staff, or provide our highly trained and fun DDMIX instructors. Example of package and pricing options for staff training:</p> -->
+
+						{{ apos.singleton(data.page, 'schoolHeader', 'dd-header', {  }) }}
+
+						{{ apos.singleton(data.page, 'schoolBody', 'apostrophe-rich-text', {
+			  			  	toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList', 'JustifyBlock', 'JustifyLeft', 'JustifyCenter', 'JustifyRight'],
+							styles: [
+								{ name: 'Title', element: 'h1', attributes:{'class':'font-extra-bold'} },
+								{ name: 'Subtitle', element: 'h3'},
+								{ name: 'Paragraph', element: 'p' }
+							]
+			  		  	}) }}
+					</div>
+				</div>
+
+				<div class="row lc-margin-bot-60 lc-margin-top-30" data-desktop-class="eq-height {% if data.schoolPackages.length < 4 %}row-centered{% endif %}" data-mobile-class="eq-height-reset">
+
+
+
+						{% for package in data.schoolPackages %}
+
+
+							<div class="col-sm-6 col-md-3 lc-margin-top-30" data-desktop-class="{% if data.schoolPackages.length < 4 %}col-centered{% endif %}">
+
+								<div class="lc-card text-center">
+								  	<div class="card-body eq-height-sizer">
+								    	<h4 class="lc-margin-top-0 dd-font-black font-bold">{{package.title}}{% if package.price %}<span> : £{{package.price}}</span> {% endif %} </h4>
+
+
+										<h5 class="card-text dd-font-light-grey">
+											{% for feature in package.features %}
+											<span>{{ feature.feature }}</span>
+											{% endfor %}
+										</h5>
+
+										<p class="lc-margin-top-15">{{package.shortDescription}}</p>
+
+								  	</div>
+
+									<div class="card-footer dd-font-white lc-margin-top-15">
+										<!-- <button class="apos-button apos-button--major dd-font-white lc-margin-top-15">
+										</button> -->
+
+										<a class="lc-text-uppercase apos-button apos-button--major dd-font-white lc-pad-tb-20" href="{% if package.buttonLink %} {{package.buttonLink}} {% else %}/packages/school-packages{% endif %}">
+											{% if package.buttonValue %}
+											{{package.buttonValue}}
+											{% else %}
+											READ MORE
+											{% endif %}
+										</a>
+
+										<!-- <a class="apos-button apos-button--major dd-font-white lc-margin-top-15" target="_blank" href="/packages/school-packages">READ MORE</a> -->
+									</div>
+								</div>
+
+							</div>
+
+						{% endfor %}
+
+
+
+
+				</div>
+
+			</div>
+		</div>
+
+		<div class="lc-full-bg-img lc-pad-tb-30" style="background-image: url('/images/ppa-package-bg.jpg')">
+
+			<div class="container">
+
+
+				<div class="row">
+
+					<div class="text-center col-sm-8 col-sm-offset-2">
+
+						<!-- <h2>DDMIX INSTRUCTOR PERIPATETIC PACKAGES</h2>
+						<hr class="dd-underline text-center"> -->
+						{{ apos.singleton(data.page, 'ppaHeader', 'dd-header', {  }) }}
+
+						{{ apos.singleton(data.page, 'ppaBody', 'apostrophe-rich-text', {
+			  			  	toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList', 'JustifyBlock', 'JustifyLeft', 'JustifyCenter', 'JustifyRight'],
+							styles: [
+								{ name: 'Title', element: 'h1', attributes:{'class':'font-extra-bold'} },
+								{ name: 'Subtitle', element: 'h3'},
+								{ name: 'Paragraph', element: 'p' }
+							]
+			  		  	}) }}
+						<!-- <p>We offer options to book our own DDMIX instructors to deliver the school program as PPA cover. There is also the option to book school workshops focusing on a specific genre of your choice.</p> -->
+					</div>
+				</div>
+
+				<div class="row lc-margin-tb-60" data-desktop-class="eq-height {% if data.ppaPackages.length < 4 %}row-centered{% endif %}" data-mobile-class="eq-height-reset">
+
+					{% for package in data.ppaPackages %}
+					<div class="col-sm-6 col-md-3 lc-margin-top-30" data-desktop-class="{% if data.ppaPackages.length < 4 %}col-centered{% endif %}">
+
+						<div class="lc-card text-center">
+						  	<div class="card-body eq-height-sizer">
+						    	<h4 class="lc-margin-top-0 dd-font-black font-bold">{{package.title}}{% if package.price %}<span> : £{{package.price}}</span> {% endif %} </h4>
+
+
+								<h5 class="card-text dd-font-light-grey">
+									{% for feature in package.features %}
+									<span>{{ feature.feature }}</span>
+									{% endfor %}
+								</h5>
+
+								<p class="lc-margin-top-15">{{package.shortDescription}}</p>
+
+						  	</div>
+
+							<div class="card-footer dd-font-white lc-margin-top-15">
+
+								<a class="lc-text-uppercase apos-button apos-button--major dd-font-white lc-pad-tb-20" href="{% if package.buttonLink %} {{package.buttonLink}} {% else %}/packages/additional-options{% endif %}">
+									{% if package.buttonValue %}
+									{{package.buttonValue}}
+									{% else %}
+									READ MORE
+									{% endif %}
+								</a>
+
+								<!-- <a class="lc-text-uppercase apos-button apos-button--major dd-font-white lc-margin-top-15" target="_blank" href="/contact?type=package">Enquire</a> -->
+							</div>
+						</div>
+
+
+					</div>
+					{% endfor %}
+				</div>
+
+			</div>
+		</div>
+
+		{{ apos.area(data.page, 'contentBelow', {
+			widgets: {
+				'banner': {},
+				'dd-container': {}
+			}
+		}) }}
+
+		{% if data.user %}
+		<div class="help-btn">
+			<a href="{{ apos.prefix }}/contact">
+				<h4> <span>Need help?</span> <i class="far fa-comments fa-2x"></i></h4>
+			</a>
+		</div>
+		{% endif %}
+
+
+	</div>
+
+{% endblock %}

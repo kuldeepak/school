@@ -1,0 +1,73 @@
+.panel-group{
+	.apos-area-widget-wrapper:not(:first-child){
+		margin-top: 20px;
+	}
+}
+
+.panel-group .panel{
+
+	border-radius: 0;
+	background-color: transparent;
+	box-shadow:none;
+
+	.panel-heading{
+		padding-left:0;
+		padding-right:0;
+
+		a{
+			position: relative;
+			display: inline-block;
+			width: 100%;
+
+			&:hover,
+			&:focus,
+			&:visited{
+				text-decoration: none;
+				color:#000;
+			}
+			i.fa-minus{
+				display: none;
+			}
+
+			&[aria-expanded="false"] {
+				span i.fa-minus{
+					display: none;
+				}
+				span i.fa-plus{
+					display: block;
+				}
+			}
+			&[aria-expanded="true"] {
+				i.fa-minus{
+					display: block;
+				}
+				i.fa-plus{
+					display: none;
+				}
+			}
+		}
+
+		span{
+			float:right;
+			position: absolute;
+			right: 0;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+	}
+}
+
+// show panels by default if logged in
+.apos-area-widgets {
+
+	.panel-heading{
+		a{
+			pointer-events: none;
+		}
+	}
+
+	.panel-collapse{
+		display: block;
+	    visibility: visible;
+	}
+}

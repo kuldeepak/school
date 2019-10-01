@@ -1,0 +1,37 @@
+{# This is an example home page template. It inherits and extends a layout template that lives in the top-level views/ folder
+for convenience #} {% extends "layout.html" %} {% block main %}
+
+<div class="page-container">
+
+	<div class="container lc-margin-tb-120" data-mobile-class="lc-margin-tb-60">
+
+		<h1 class="font-extra-bold" >FAQ</h1>
+		<hr class="dd-underline text-left">
+
+		{{ apos.singleton(data.page, 'intro', 'apostrophe-rich-text',
+			{
+				toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList' ],
+				styles: [ { name: 'Paragraph', element:'p' } ]
+			})
+		}}
+
+		<!-- utilising a bootstrap accordion component, as seen here: https://www.w3schools.com/bootstrap/bootstrap_collapse.asp -->
+		<div class="panel-group faq-list lc-margin-top-60" >
+			{{ apos.area(data.page, 'faqList', {
+				widgets: {
+					'dd-faq': { }
+				}
+			}) }}
+		</div>
+
+		{% if data.user %}
+		<div class="help-btn">
+			<a href="{{ apos.prefix }}/contact">
+				<h4> <span>Need help?</span> <i class="far fa-comments fa-2x"></i></h4>
+			</a>
+		</div>
+		{% endif %}
+	</div>
+</div>
+
+{% endblock %}

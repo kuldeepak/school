@@ -1,0 +1,25 @@
+{
+  "name": "ddmix-schools",
+  "version": "2.0.0",
+  "description": "Minimal Apostrophe Boilerplate",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "P'unk Avenue",
+  "license": "MIT",
+  "dependencies": {
+    "@sailshq/lodash": "^3.10.3",
+    "apostrophe": "^2.57.0",
+    "mime": "^2.3.1",
+    "nodemailer-sendgrid": "^1.0.3",
+    "uploadfs": "^1.10.2"
+  },
+  "devDependencies": {
+    "bootstrap-less": "^3.3.8"
+  }
+}

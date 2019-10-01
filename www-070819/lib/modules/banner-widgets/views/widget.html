@@ -1,0 +1,26 @@
+<div class="dd-banner">
+
+    <div class="lc-full-bg-img lc-pad-tb-60" data-mobile-class="mobile" style="background-image:url('/uploads/attachments/{{data.widget.imageUrl._id}}-{{data.widget.imageUrl.name}}.full.{{data.widget.imageUrl.extension}}'); {{ 'background-position-x:right;' if data.widget.position == 'right' }} {{ 'background-position-x:left;' if data.widget.position == 'left' }} {{ 'background-attachment:fixed;' if data.widget.preventScrolling == true }}">
+
+		<div class="content container font-white">
+
+			{{ apos.area(data.widget, 'content',{
+				widgets: {
+					'apostrophe-rich-text': {
+						toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList' ],
+						styles: [ { name: 'Title', element: 'h1', attributes:{'class':'font-extra-bold'} }, { name: 'Subtitle', element:'h3'}, { name: 'Paragraph', element: 'p' } ]
+					},
+					'apostrophe-images': { },
+					'dd-button': {},
+					'dd-quoteblock': {},
+					'dd-header': {},
+					'dd-column-block': {},
+					'video-popup': {}
+				}
+			}) }}
+
+    	</div>
+
+	</div>
+
+</div>

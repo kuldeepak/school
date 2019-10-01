@@ -1,0 +1,70 @@
+{% macro defaultArea(context, name, containers) %}
+	<!-- remove "container widgets" if 'containers' is false. e.g. as-three-column-widget we don't want nested areas -->
+	{% if containers == false %}
+		{{ apos.area(context, name, {
+		  	  	widgets: {
+		  		  	'apostrophe-rich-text': {
+		  			  	toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList', 'JustifyBlock', 'JustifyLeft', 'JustifyCenter', 'JustifyRight'],
+						styles: [
+							{ name: 'Title', element: 'h1', attributes:{'class':'font-extra-bold'} },
+							{ name: 'Subtitle', element: 'h3'},
+							{ name: 'Paragraph', element: 'p' }
+						]
+		  		  	},
+					'apostrophe-images': {},
+					'apostrophe-video': {},
+					'dd-button': {},
+	  				'dd-header': {},
+					'dd-quoteblock': {},
+					'benefits': {},
+					'dd-spacer': {}
+		  	  	}
+	    	})
+		}}
+	{% else %}
+		{{ apos.area(context, name, {
+			  	widgets: {
+					'apostrophe-rich-text': {
+						toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList', 'JustifyBlock', 'JustifyLeft', 'JustifyCenter', 'JustifyRight'],
+						styles: [
+							{ name: 'Title', element: 'h1', attributes:{'class':'font-extra-bold'} },
+							{ name: 'Subtitle', element: 'h3'},
+							{ name: 'Paragraph', element: 'p' }
+						]
+				  	},
+				  	'apostrophe-images': { },
+					'apostrophe-video': {},
+	  				'dd-column-block' : {},
+	  				'dd-button': {},
+	  				'dd-header': {},
+	  				'dd-quoteblock': {},
+		  			'benefits': {},
+					'dd-spacer': {}
+			  	}
+			})
+		}}
+	{% endif %}
+{% endmacro %}
+
+
+<!-- Areas utilising text and media widgets only (video / images / text) -->
+<!-- used in blog pages -->
+{% macro copyAndMediaArea(context, name) %}
+{{ apos.area(context, name, {
+		widgets: {
+			'apostrophe-rich-text': {
+				toolbar: [ 'Styles', 'Bold', 'Italic', 'Blockquote', 'Link', 'Anchor', 'Unlink', 'BulletedList', 'JustifyBlock', 'JustifyLeft', 'JustifyCenter', 'JustifyRight'],
+				styles: [
+					{ name: 'Title', element: 'h1', attributes:{'class':'font-extra-bold'} },
+					{ name: 'Subtitle', element: 'h3'},
+					{ name: 'Paragraph', element: 'p' }
+				]
+			},
+			'apostrophe-images': { },
+			'apostrophe-video': {},
+			'dd-header': {},
+			'dd-spacer': {}
+		}
+	})
+}}
+{% endmacro %}

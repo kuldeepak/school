@@ -1,0 +1,131 @@
+
+.dd-page-contact{
+
+	.lc-vert-align-middle{
+		position: relative;
+		display: inline-block;
+		width: 100%;
+
+		> *:not(span){
+			vertical-align: middle;
+			display: inherit;
+		}
+	}
+
+	.remove-p-margin{
+		p{
+			margin: 0 !important;
+		}
+	}
+
+	.float-right{
+		float:right;
+	}
+
+	.center-hor{
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+
+	// some beautiful css magic to show an asterix on required inputs
+	.form-group:not(.request-type-selection){
+		display: table;
+		width:100%;
+
+		input:first-child,
+		textarea:first-child{
+			display: table-footer-group;
+			margin-top: 5px;
+		}
+		label:nth-child(2){
+			display: table-header-group;
+		}
+
+		textarea:first-child[required]+label:after,
+		input:first-child[required]+label:after{
+			content:"*";
+		}
+	}
+
+	div.form-group:not(.message-box){
+		margin-bottom: 30px;
+	}
+	div.form-group.message-box{
+		margin-bottom:0;
+	}
+
+	ul{
+		li.dd-custom-bullet{
+
+			&:before{
+				top: 50%;
+				transform: translateY(-50%);
+				height: 3rem;
+				background-position: center;
+			}
+
+			&.dd-bullet-img-phone:before{
+				background-image: url('/images/icons/phone-icon.png')
+			}
+			&.dd-bullet-img-email:before{
+				background-image: url('/images/icons/message-icon.png')
+			}
+		}
+	}
+
+	div.apos-rich-text p:last-child{
+		margin-bottom: 0px;
+	}
+
+}
+
+
+
+
+/*=====================================================
+=            Bootstrap 2.3.2 Media Queries            =
+=====================================================*/
+@media only screen and (max-width : 1200px) {
+
+}
+
+@media only screen and (max-width : 979px) {
+
+}
+
+@media only screen and (max-width : 767px) {
+
+}
+
+@media only screen and (max-width : 480px) {
+
+	.request-type-selection{
+		padding-left: 15px;
+	}
+
+	.request-type-selection label.radio-inline:not(:first-child) {
+	    margin-top: 10px;
+	}
+
+	.request-type-selection label.radio-inline {
+	    display: list-item;
+	    list-style: none;
+	    margin-left: 0;
+	}
+
+	.dd-page-contact{
+		ul{
+			li.dd-custom-bullet{
+				margin-top: 15px;
+			}
+			li.dd-custom-bullet:first-child{
+				margin-top: 0;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width : 320px) {
+
+}

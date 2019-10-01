@@ -1,0 +1,124 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "apostrophe-blog",
+        "scope": null,
+        "escapedName": "apostrophe-blog",
+        "name": "apostrophe-blog",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/puntnomads/Downloads/apostrophe-project"
+    ]
+  ],
+  "_from": "apostrophe-blog@latest",
+  "_id": "apostrophe-blog@2.1.1",
+  "_inCache": true,
+  "_location": "/apostrophe-blog",
+  "_nodeVersion": "6.10.3",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/apostrophe-blog-2.1.1.tgz_1495833030299_0.23647009208798409"
+  },
+  "_npmUser": {
+    "name": "boutell",
+    "email": "boutell@boutell.com"
+  },
+  "_npmVersion": "3.10.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "apostrophe-blog",
+    "scope": null,
+    "escapedName": "apostrophe-blog",
+    "name": "apostrophe-blog",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/apostrophe-blog/-/apostrophe-blog-2.1.1.tgz",
+  "_shasum": "0ba04a01435870255a24d6bb44d0f512c5bd3058",
+  "_shrinkwrap": null,
+  "_spec": "apostrophe-blog",
+  "_where": "/Users/puntnomads/Downloads/apostrophe-project",
+  "author": {
+    "name": "P'unk Avenue LLC"
+  },
+  "bugs": {
+    "url": "https://github.com/punkave/apostrophe-blog/issues"
+  },
+  "dependencies": {
+    "async": "^1.5.2",
+    "lodash": "^4.6.1",
+    "moment": "^2.12.0",
+    "qs": "^6.1.0"
+  },
+  "description": "Blogging for the Apostrophe content management system",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "0ba04a01435870255a24d6bb44d0f512c5bd3058",
+    "tarball": "https://registry.npmjs.org/apostrophe-blog/-/apostrophe-blog-2.1.1.tgz"
+  },
+  "gitHead": "43513b4a9e1af28bc19b03a2184bf145eed27c89",
+  "homepage": "https://github.com/punkave/apostrophe-blog#readme",
+  "keywords": [
+    "blog",
+    "apostrophe",
+    "cms",
+    "blogging",
+    "punkave"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "alexgilbert",
+      "email": "alex@punkave.com"
+    },
+    {
+      "name": "austinstarin",
+      "email": "austin@punkave.com"
+    },
+    {
+      "name": "boutell",
+      "email": "boutell@boutell.com"
+    },
+    {
+      "name": "colpanik",
+      "email": "kerry@punkave.com"
+    },
+    {
+      "name": "jimmyh",
+      "email": "jimmy@punkave.com"
+    },
+    {
+      "name": "kyjoya",
+      "email": "kyleejacker@gmail.com"
+    },
+    {
+      "name": "mcoppola",
+      "email": "coppola@punkave.com"
+    },
+    {
+      "name": "stuartromanek",
+      "email": "stuart@punkave.com"
+    }
+  ],
+  "name": "apostrophe-blog",
+  "optionalDependencies": {},
+  "readme": "# apostrophe-blog\n\nThis bundle provides a complete foundation for blogging with the [Apostrophe CMS](http://apostrophenow.org).\n\nThe bundle consists of three Apostrophe modules (in a single npm module):\n\n* `apostrophe-blog`\n* `apostrophe-blog-pages`\n* `apostrophe-blog-widgets`\n\nThe `apostrophe-blog` module provides the ability to create and edit blog posts and manage their publication dates.\n\nThe `apostrophe-blog-pages` module displays blog posts on a page. It extends the `apostrophe-pieces-pages` module. A blog page displays only blog posts whose publication date has arrived.\n\nThe `apostrophe-blog-widgets` module provides an `apostrophe-blog` widget, which you can use to select blog posts to appear anywhere on your site. Posts do not appear until their publication date.\n\nThese three modules extend `apostrophe-pieces`, `apostrophe-pieces-pages` and `apostrophe-pieces-widgets`, and you can extend them further as well.\n\n## Example configuration\n\nFor a single blog:\n\n```javascript\n// in app.js\n// We must declare the bundle!\nbundles: [ 'apostrophe-blog' ],\nmodules: {\n  'apostrophe-blog': {},\n  'apostrophe-blog-pages': {},\n  'apostrophe-blog-widgets': {},\n  'apostrophe-pages': {\n    // We must list `apostrophe-blog-page` as one of the available page types\n    types: [\n      {\n        name: 'apostrophe-blog-page',\n        label: 'Blog'\n      },\n      {\n        name: 'default',\n        label: 'Default'\n      },\n      {\n        name: 'home',\n        label: 'Home'\n      }\n    ]\n  }\n}\n```\n\n## Contextual editing\n\nYou can set the `contextual: true` option for the `apostrophe-blog` module if you prefer to allow the end user to edit the content of the article \"in context\" on the `show.html` page. This is generally the preferred way to go.\n\nYou can also set `contextual: true` for individual schema fields like `body` so that they don't appear in the modal at all.\n\nWhen `contextual: true` is set for the module, the user is redirected to the \"show page\" for that blog post as soon as they click \"save\" so that they can edit further.\n\nIn addition, the \"context menu\" (the \"Page menu\") is enhanced with blogging-related choices when on a blog index page or show page.\n\n## Multiple blogs\n\nOne way to create two or more blogs is to create separate blog pages on the site, and use the \"with these tags\" feature to display only posts with certain tags.\n\nAnother approach is to `extend` the modules, creating new modules and a completely separate admin bar item for managing the content. If you take this approach, you must set a distinct `name` property when configuring your subclass of `apostrophe-blog`, such as `article`. This will be value of `type` in the database for each blog post of this subclass.\n\nThe latter approach is often best as it requires less user training to avoid confusion. The former approach has its own advantages, notably that it is easier to aggregate content and have it appear in multiple places intentionally.\n\n## Filtering blog posts\n\nThe index page includes filters for `day`, `month`, and `year`, meaning that parameters in query strings like `&year=2016` will automatically be passed to the mongo query that loads the pieces for your index page. You can refer to these filters in your template by using `data.piecesFilters.year`, etc.\n\n[Check out this tutorial to learn more.](http://apostrophecms.org/docs/tutorials/intermediate/cursors.html#creating-filter-u-i-with-code-apostrophe-pieces-pages-code)\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/punkave/apostrophe-blog.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "2.1.1"
+}

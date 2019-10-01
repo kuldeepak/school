@@ -1,0 +1,145 @@
+.dd-page-assets{
+
+	button.video-thumbnail{
+		max-width:250px;
+		padding-left: 0;
+		p{
+			white-space: normal;
+		}
+	}
+
+
+	.panel-group .panel{
+
+		border-radius: 0;
+		background-color: transparent;
+		box-shadow:none;
+
+		.panel-heading{
+			padding-left:0;
+			padding-right:0;
+
+			a{
+				position: relative;
+				display: inline-block;
+				width: 100%;
+
+				*:not(span){
+					vertical-align: middle;
+					display: inherit;
+				}
+
+				&:hover,
+				&:focus,
+				&:visited{
+					text-decoration: none;
+					color:inherit;
+				}
+				span i.fa-minus{
+					display: none;
+				}
+
+				&[aria-expanded="false"] {
+					span i.fa-minus{
+						display: none;
+					}
+					span i.fa-plus{
+						display: block;
+					}
+				}
+				&[aria-expanded="true"] {
+					span i.fa-minus{
+						display: block;
+					}
+					span i.fa-plus{
+						display: none;
+					}
+				}
+			}
+		}
+
+		.panel-heading+.panel-collapse>.panel-body{
+			border-top: none;
+		}
+	}
+
+	#collapseVideos li {
+    	vertical-align: top;
+	}
+
+	ul{
+		padding-left: 30px;
+
+		&.lc-no-style{
+			padding-left: 60px;
+		}
+
+		li.dd-custom-bullet{
+			position: relative;
+			line-height: 1.5rem;
+			margin-top: 15px;
+			padding-left: 45px;
+
+			a{
+				// position: absolute;
+				// top: 50%;
+				// transform: translateY(-50%);
+				// margin-left: 30px;
+			}
+
+			&:before{
+				position: absolute;
+				// top:50%;
+				// transform:translateY(-50%);
+				content:"";
+				width: 30px;
+				height:40px;
+				background-size: contain;
+				background-repeat: no-repeat;
+				left:0;
+			}
+			&.dd-bullet-img-doc:before{
+				background-image: url(/images/icons/icon-resources-doc.png);
+			}
+			&.dd-bullet-img-music:before{
+				background-image: url(/images/icons/icon-resources-music.png);
+			}
+			&.dd-bullet-img-video:before{
+				background-image: url(/images/icons/icon-resources-video.png);
+			}
+
+		}
+	}
+}
+
+/*=====================================================
+=            Bootstrap 2.3.2 Media Queries            =
+=====================================================*/
+@media only screen and (max-width : 1200px) {
+
+}
+
+@media only screen and (max-width : 979px) {
+
+}
+
+
+// tablet
+@media only screen and (max-width : 767px) {
+
+}
+
+@media only screen and (max-width : 480px) {
+
+	.dd-page-assets{
+
+		ul.lc-no-style{
+			padding-left: 0px;
+		}
+
+	}
+}
+
+@media only screen and (max-width : 320px) {
+
+}

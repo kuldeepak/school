@@ -1,0 +1,23 @@
+
+<blockquote class="dd-quoteblock">
+	<!-- <div class="col-sm-2">
+		<img src="/images/icons/quotes-black.png" alt="">
+	</div> -->
+	<div>
+		<!-- <p>{{ data.widget.quote }}</p> -->
+
+		{{ apos.singleton(data.widget, 'quote', 'apostrophe-rich-text', {
+			toolbar: [ 'Styles', 'Bold'],
+			styles: [
+				{ name: 'Header 1', element: 'h1', attributes:{'class':'font-extra-bold'} },
+				{ name: 'Header 2', element: 'h2' },
+				{ name: 'Header 3', element: 'h3' }
+			]
+		}) }}
+
+		<br>
+
+		<p class="font-bold">{{ data.widget.name }}</p>
+		<p class="font-italic">{{ data.widget.relation }}</p>
+	</div>
+</blockquote>

@@ -1,0 +1,70 @@
+.dd-spacer {
+	padding-top: 120px;
+
+	&.dd-spacer-half{
+		padding-top: 60px;
+	}
+
+	&.dd-spacer-quarter{
+		padding-top: 30px;
+	}
+}
+
+// below is for admin login only
+.apos-ui{
+	&+ .dd-spacer{
+		//background-color: rgba(255,0,0,0.5);
+		background-image: linear-gradient(45deg, #eeeeee 25%, #ffffff 25%, #ffffff 50%, #eeeeee 50%, #eeeeee 75%, #ffffff 75%, #ffffff 100%);
+		background-size: 56.57px 56.57px;
+
+		&:after {
+			color:black;
+		    content: "This is a full height spacer";
+		    position: absolute;
+		    top: 50%;
+		    left: 50%;
+		    transform: translate(-50%,-50%);
+		}
+
+		&.dd-spacer-half:after{
+			content: "This is a half height spacer"
+		}
+		&.dd-spacer-quarter:after{
+			content: "This is a quarter height spacer"
+		}
+	}
+}
+
+// media queries to reduce spacing for mobile
+/*=====================================================
+=            Bootstrap 2.3.2 Media Queries            =
+=====================================================*/
+@media only screen and (max-width : 1200px) {
+
+}
+
+@media only screen and (max-width : 979px) {
+
+}
+
+@media only screen and (max-width : 767px) {
+
+}
+
+@media only screen and (max-width : 480px) {
+	.dd-spacer {
+		padding-top: 60px;
+
+		&.dd-spacer-half{
+			padding-top: 30px;
+		}
+
+		&.dd-spacer-quarter{
+			padding-top: 15px;
+		}
+	}
+}
+
+@media only screen and (max-width : 320px) {
+
+}

@@ -1,0 +1,31 @@
+.page-container.home-page {
+  padding-top: 0;
+  // accounts for the first area being the "jumbotron"
+  > .apos-area:not(:first-child) {
+    .apos-area-widgets {
+      > .apos-area-widget-wrapper {
+        // margin-top:60px;
+
+        &:last-child {
+          // margin-bottom:120px;
+        }
+      }
+    }
+  }
+
+  .big-banner {
+    .dd-banner .lc-full-bg-img {
+
+		&:not(.mobile){
+			padding: 180px 60px;
+		}
+		&.mobile{
+			padding: 120px 30px 30px;
+		}
+
+	    color: white;
+
+	    text-align: center;
+    }
+  }
+}

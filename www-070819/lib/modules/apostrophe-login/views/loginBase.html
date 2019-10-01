@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block title %}{{ __("Login") }}{% endblock %}
+
+{% block bodyClass %}apos-login-page{% endblock %}
+
+{% block main %}
+	<div class="page-container lc-full-bg lc-pad-lr-15" style="background-image:url('/images/login-bg.jpg')">
+
+		<div class="row lc-pad-top-120">
+
+			<div class="col-sm-4 col-sm-offset-4">
+
+				<div class="apos-login">
+					<!-- <div class="apos-login-title apos-text-title">{% block subHeading %}{{ __('Login') }}{% endblock %}</div> -->
+					<h3 class="font-bold lc-text-uppercase">Login to your account</h3>
+					<hr class="dd-underline text-left">
+
+					{% block form %}
+					<form class="lc-margin-top-45" action="{% block action %}{{ apos.prefix }}/login{% endblock %}" method="post">
+						{% if data.message %}<div class="apos-login-warning">{{ __(data.message) }}</div>{% endif %}
+						{% block fields %}
+						<div class="apos-field apos-login-username">
+							<label class="apos-field-label" for="username">{{ __('Username / E-mail address') }} {% block usernameHint %}{% endblock %}</label>
+							<input class="apos-field-input apos-field-input-text" type="text" name="username" id="username" autofocus />
+						</div>
+						<div class="apos-field apos-login-password">
+							<label class="apos-field-label" for="password">{{ __('Password') }} {% block passwordHint %}{% endblock %}</label>
+							<input class="apos-field-input apos-field-input-text" type="password" name="password" id="password" />
+						</div>
+						{% endblock %}
+
+
+						{% block passwordReset %}
+						{% if data.passwordReset %}
+						<div class="apos-login-reset lc-margin-top-15">
+							<p class="text-right">
+								<a class="dd-font-black dd-text-underline" href="{{ apos.prefix }}/password-reset-request">{{ __('Forgotten your password?') }}</a>
+							</p>
+						</div>
+						{% endif %}
+						{% endblock %}
+
+						<div class="apos-login-submit text-center lc-margin-top-30">
+							<input type="submit" class="apos-button apos-button--major" value="{% block buttonLabel %}{{ __('Submit') }}{% endblock %}" />
+						</div>
+
+					</form>
+					{% endblock %}
+
+					<!-- <p class="text-center lc-margin-top-30">Haven’t got an account? <a href="/contact" class="dd-font-orange">Register</a></p> -->
+				</div>
+			</div>
+		</div>
+
+		<div class="row lc-pad-bot-120 lc-margin-top-30">
+			<div class="col-sm-6 col-sm-offset-3 text-center">
+				<p>This area is exclusively for schools who have purchased a DDMIX for Schools package.</p>
+				<p>Please <span class="dd-font-orange"><a class="dd-text-underline" href="{{ apos.prefix }}/contact">contact us</a></span> for more information.</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}

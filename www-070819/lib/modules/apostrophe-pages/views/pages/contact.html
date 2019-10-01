@@ -1,0 +1,275 @@
+{# This is an example home page template. It inherits and extends a layout template that lives in the top-level views/ folder for convenience #} {% extends "layout.html" %} {% block main %}
+
+<div class="page-container dd-page-contact">
+
+	<div class="container lc-margin-top-120" data-mobile-class="lc-margin-top-60" data-desktop-class="lc-margin-top-120">
+
+		<h1 class="font-extra-bold lc-text-uppercase">Contact Us</h1>
+		<hr class="dd-underline text-left">
+
+		<!-- intro bullets -->
+		<div class="lc-margin-top-60">
+
+
+			<table>
+				<td style="width:50px;">
+					<img src="/images/icons/school-icon.png" alt="">
+				</td>
+				<td class="lc-pad-left-15 remove-p-margin">
+					{{ apos.singleton(data.page, 'introSchool', 'apostrophe-rich-text', { toolbar: [ ] }) }}
+				</td>
+			</table>
+
+			<table class="lc-margin-top-30">
+				<td style="width:50px;">
+					<img src="/images/icons/package-icon.png" alt="" >
+				</td>
+				<td class="lc-pad-left-15 remove-p-margin">
+					{{ apos.singleton(data.page, 'introPackage', 'apostrophe-rich-text', { toolbar: [ ] }) }}
+				</td>
+			</table>
+
+			<table class="lc-margin-top-30">
+				<td style="width:50px;">
+					<img src="/images/icons/info-icon.png" alt="">
+				</td>
+				<td class="lc-pad-left-15 remove-p-margin">
+					{{ apos.singleton(data.page, 'introInfo', 'apostrophe-rich-text', { toolbar: [ ] }) }}
+				</td>
+			</table>
+		</div>
+
+
+		<div class="lc-margin-top-30">
+			{{ apos.singleton(data.page, 'intro', 'apostrophe-rich-text', { toolbar: [ 'Bold', 'Italic' ] }) }}
+		</div>
+
+
+		<div class="row lc-margin-top-60">
+			<div class="col-sm-8 col-sm-offset-2">
+
+
+				<form id="contactUsForm">
+
+					<div class="row">
+
+						<div class="col-sm-6">
+
+							<div class="form-group required-swapsies">
+								<input type="text" class="form-control" id="name" placeholder="Name" required>
+								<label for="name">Your name</label>
+							</div>
+
+						</div>
+
+						<div class="col-sm-6">
+
+							<div class="form-group">
+								<input type="tel" class="form-control" id="phone" placeholder="Phone" required pattern="[0-9]{10,14}" oninvalid="this.setCustomValidity('Numbers only, with a minimum length of 10 characters')" oninput="this.setCustomValidity('')">
+								<label for="phone">Phone number</label>
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="row">
+
+						<div class="col-sm-12">
+							<div class="form-group">
+								<input type="email" class="form-control" id="email" placeholder="Email" required>
+								<label for="email">Email address</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+
+						<div class="col-sm-12">
+							<label>What's the nature of your email?</label>
+							<div class="form-group request-type-selection">
+								<!-- <label class="radio-inline">
+								  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+								</label> -->
+
+								<label class="radio-inline">
+									<input type="radio" name="formSections" id="generalEnquiry" value="general" checked>
+									General enquiry
+								</label>
+
+								<label class="radio-inline">
+									<input type="radio" name="formSections" id="freeTrial" value="trial"/>
+									Book a free trial
+								</label>
+
+								<label class="radio-inline">
+									<input type="radio" name="formSections" id="bookPackage" value="package"/>
+									Book a package
+								</label>
+							</div>
+						</div>
+					</div>
+
+
+					<div id="bookingSection" style="display:none">
+
+						<div class="row">
+							<div class="col-sm-12">
+
+								<div class="form-group">
+									<label for="packages">Select a package of interest</label>
+									<select id="packages" name="packages" class="form-control">
+										<option value="">Please select a package</option>
+										{% for package in data.packages %}
+										<option value="{{ package.title}}">{{ package.title}}</option>
+										{% else %}
+										<option value="none">There are no packages</option>
+										{% endfor %}
+									</select>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-6">
+
+								<div class="form-group">
+									<input id="schoolName" type="text" name="schoolName" class="form-control">
+									<label for="schoolName">School name</label>
+								</div>
+							</div>
+
+							<div class="col-sm-6">
+
+								<div class="form-group">
+									<input id="headteacherName" type="text" name="headteacherName" class="form-control">
+									<label for="headteacherName">Headteacher name</label>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="row form-trial-only">
+							<div class="col-sm-6">
+
+								<div class="form-group">
+									<input id="yearGroup" type="text" name="yearGroup" class="form-control">
+									<label for="yearGroup">Year group</label>
+
+								</div>
+							</div>
+
+							<div class="col-sm-6">
+
+								<div class="form-group">
+									<input id="numberOfStudents" type="number" name="numberOfStudents" class="form-control">
+									<label for="numberOfStudents">No. of students</label>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-12">
+
+								<div class="form-group">
+									<input id="address1" type="text" name="address1" class="form-control">
+									<label for="address1">Address</label>
+								</div>
+								<div class="form-group">
+									<input id="address2" type="text" name="address2" class="form-control">
+								</div>
+								<div class="form-group">
+									<input id="postcode" type="text" name="postcode" class="form-control">
+									<label for="postcode">Postcode</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-12">
+
+								<h3 class="lc-text-uppercase">Preferred Dates</h3>
+								<hr class="dd-underline text-left">
+
+							</div>
+
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="dateOption1">Option 1*</label>
+									<input id="dateOption1" type="date" name="dateOption1" class="form-control">
+								</div>
+							</div>
+							<!-- datetime, datetime-local, date -->
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="dateOption2">Option 2</label>
+									<input id="dateOption2" type="date" name="dateOption2" class="form-control">
+								</div>
+							</div>
+
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="dateOption3">Option 3</label>
+									<input id="dateOption3" type="date" name="dateOption3" class="form-control">
+								</div>
+							</div>
+
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="dateOption4">Option 4</label>
+									<input id="dateOption4" type="date" name="dateOption4" class="form-control">
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+
+					<div class="row">
+
+						<div class="col-sm-12">
+							<div class="form-group message-box">
+								<textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+								<label for="message">How can we help?</label>
+							</div>
+						</div>
+
+						<div class="col-sm-12 text-right">
+							<p class="font-italic dd-font-red">Fields marked with an * are required</p>
+						</div>
+					</div>
+
+					<div class="row lc-margin-top-30">
+						<div class="col-sm-12 text-center">
+
+							<button id="form-submit" type="submit" class="apos-button apos-button--major" >Submit</button>
+
+						</div>
+					</div>
+
+				</form>
+
+			</div>
+		</div>
+
+		<div class="col-sm-10 col-sm-offset-1 lc-margin-tb-60 text-center">
+
+
+			<ul class="lc-horizontal-list lc-no-style">
+
+				<li class="dd-custom-bullet dd-bullet-img-phone" style="min-width:50px;">
+					{{ apos.singleton(data.page, 'contactPhone', 'apostrophe-rich-text', { toolbar: [ ] }) }}
+				</li>
+
+				<li class="dd-custom-bullet dd-bullet-img-email" style="min-width:50px;">
+					{{ apos.singleton(data.page, 'contactEmail', 'apostrophe-rich-text', { toolbar: [ ] }) }}
+				</li>
+
+			</ul>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
