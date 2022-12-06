@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "@sailshq/lodash": "^3.10.3",
-    "apostrophe": "^2.57.0",
+    "apostrophe": "^2.223.0",
     "mime": "^2.3.1",
     "nodemailer-sendgrid": "^1.0.3",
     "uploadfs": "^1.10.2"
